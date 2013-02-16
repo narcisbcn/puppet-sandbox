@@ -36,9 +36,8 @@ class puppet::server(
   $package_name = $puppet::params::server_package_name
 ) inherits puppet::params {
 
-  # required to prevent syslog error on ubuntu
-  # https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/564861
-  file { [ '/etc/puppet', '/etc/puppet/files' ]:
+
+  file { [ '/etc/puppet/files', '/etc/puppet/classes' ]:
     ensure => directory,
     before => Package[ 'puppetmaster' ],
   }
@@ -68,6 +67,7 @@ class puppet::server(
     owner   => 'puppet',
     group   => 'puppet',
     mode    => '0644',
+    replace => false,
     source  => 'puppet:///modules/puppet/site.pp',
     require => Package[ 'puppetmaster' ],
   }
