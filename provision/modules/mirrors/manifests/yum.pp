@@ -17,23 +17,23 @@
 #
 class mirrors::yum {
 
-  # can't rely on $lsbmajdistrelease being available on CentOS, and lsb's
-  # dependencies are huge, so don't force installation of the package
-  $os_release_major_version = regsubst($operatingsystemrelease, '^(\d+).*$', '\1')
+   # Get major Version
+   $mver = split($operatingsystemrelease, '[.]')
 
-  file { 'puppetlabs.repo':
-    ensure  => present,
-    path    => '/etc/yum.repos.d/puppetlabs.repo',
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    content => template('mirrors/puppetlabs.repo.erb'),
-  }
+   yumrepo { 'puppetlabs':
+      descr          => "Puppet Labs Packages for EL ${mver[0]}",
+      baseurl        => "http://yum.puppetlabs.com/el/${mver[0]}/products/\$basearch",
+      gpgkey         => "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs",
+      gpgcheck       => "1",
+      enabled        => "1",
+   }
 
-  exec { 'yum_makecache':
-    command     => '/usr/bin/yum makecache',
-    subscribe   => File[ 'puppetlabs.repo' ],
-    refreshonly => true,
-  }
+   yumrepo { 'puppetlabs-deps':
+      descr          => "Puppet Labs Dependencies for EL ${mver[0]}",
+      baseurl        => "http://yum.puppetlabs.com/el/${mver[0]}/dependencies/$basearch",
+      gpgkey         => "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs",
+      gpgcheck       => "1",
+      enabled        => "1",
+   }
 
 }
