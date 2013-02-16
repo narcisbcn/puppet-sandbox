@@ -37,7 +37,7 @@ class puppet::server(
 ) inherits puppet::params {
 
 
-  file { [ '/etc/puppet/files', '/etc/puppet/classes' ]:
+  file { '/etc/puppet/files':
     ensure => directory,
     before => Package[ 'puppetmaster' ],
   }
@@ -92,6 +92,12 @@ class puppet::server(
     ensure  => present,
     replace => false,
     source  => 'puppet:///modules/puppet/nodes.pp',
+  }
+  
+  file { '/etc/puppet/manifests/classes':
+    ensure  => link,
+    target  => '/vagrant/classes',
+    require => Package[ 'puppetmaster' ],
   }
 
   service { 'puppetmaster':
