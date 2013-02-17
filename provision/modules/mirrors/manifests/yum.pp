@@ -30,7 +30,7 @@ class mirrors::yum {
 
    yumrepo { 'puppetlabs-deps':
       descr          => "Puppet Labs Dependencies for EL ${mver[0]}",
-      baseurl        => "http://yum.puppetlabs.com/el/${mver[0]}/dependencies/$basearch",
+      baseurl        => "http://yum.puppetlabs.com/el/${mver[0]}/dependencies/\$basearch",
       gpgkey         => "http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs",
       gpgcheck       => "1",
       enabled        => "1",
