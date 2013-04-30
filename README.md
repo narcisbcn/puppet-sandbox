@@ -48,7 +48,7 @@ should be good to clone this repo and go:
 
     $ vagrant box list
     precise64
-    $ git clone git://github.com/elasticdog/puppet-sandbox.git
+    $ git clone git://github.com/narcisbcn/puppet-sandbox.git
     $ cd puppet-sandbox/
 
 If you want a CentOS base box to work from, I highly recommend the boxes
