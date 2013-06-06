@@ -14,13 +14,6 @@ Puppet Sandbox will set up three separate virtual machines:
 * _client1.example.com_ - the first Puppet client machine
 * _client2.example.com_ - the second Puppet client machine
 
-These VMs can be used in conjunction to segregate and test your modules
-based on node roles, Puppet environments, etc. You can even test modules
-on different Linux distributions or release versions to better match your
-production infrastructure.
-
-**Check out the [Puppet Sandbox Demonstration](http://vimeo.com/elasticdog/puppet-sandbox-demo)
-screencast for a brief overview of the project.**
 
 Requirements
 ============
@@ -42,17 +35,13 @@ Puppet Sandbox has been designed for and tested with Vagrant base boxes running:
 Usage
 =====
 
-Make sure you have a compatible Vagrant base box (if you don't have one
-already, it will download a 64-bit Ubuntu 12.04 box for you), and then you
+Make sure you have a compatible Vagrant base box, and then you
 should be good to clone this repo and go:
 
     $ vagrant box list
     precise64
     $ git clone git://github.com/narcisbcn/puppet-sandbox.git
     $ cd puppet-sandbox/
-
-If you want a CentOS base box to work from, I highly recommend the boxes
-published by Jan Vansteenkiste: http://packages.vstone.eu/vagrant-boxes/
 
 Initial Startup
 ---------------
