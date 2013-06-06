@@ -13,7 +13,7 @@ Vagrant::Config.run do |config|
   puppet_nodes.each do |node|
     config.vm.define node[:hostname] do |node_config|
       node_config.vm.box = node[:box]
-      node_config.vm.box_url = 'https://dl.dropbox.com/sh/9rldlpj3cmdtntc/56JW-DSK35/centos-62-32bit-puppet.box'
+      node_config.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box'
       node_config.vm.host_name = node[:hostname] + '.' + domain
       node_config.vm.network :hostonly, node[:ip]
 
